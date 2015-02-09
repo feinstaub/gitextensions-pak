@@ -44,10 +44,10 @@ AutoReqProv:   no
 Requires:      mono-core mono-extras mono-winforms
 
 %description
-GitExtensions is a shell extension, a Visual Studio 2008/2010/2012 plugin and a standalone Git repository tool.
-It is a toolkit to make working with Git under Windows more intuitive.
-The shell extension will integrate in Windows Explorer and presents a nice context menu on files.
-It is implemented in .NET; on Linux it runs on mono. The commandline executable is called gitext.
+GitExtensions is a standalone Git repository tool.
+Its primary goal is to make working with git under Windows more intuitive.
+It is implemented in .NET/WinForms and designed to also run on Linux using mono.
+The commandline executable is called gitext.
 The noarch part currently installs to /opt which should be fixed according to RPMLINT.
 
 

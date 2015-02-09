@@ -21,7 +21,7 @@
 
 # The 'Name' must match the openSUSE build service package name
 # in order to get a properly filled download page
-# (see for example https://build.opensuse.org/package/show/home:codeminister/TODO)
+# (see for example https://build.opensuse.org/package/show/home:codeminister/GitExtensions)
 Name:          GitExtensions
 
 Summary:       Standalone Git Repository Tool
@@ -70,9 +70,9 @@ cp -v -R * %{buildroot}/opt/%{name}
 rm %{buildroot}/opt/%{name}/gitext.sh
 
 # taken from https://build.opensuse.org/package/view_file/home:Warhammer40k:stuff/GitExtensions/GitExtensions.spec
-# todo: what do all the parameters say?
 # copy gitext executable, note the trailing slash
 install -d %{buildroot}/%{_bindir}/
+# todo: what do all the parameters say?
 install -p -D -m 0755 %{SOURCE1} %{buildroot}/%{_bindir}/
 
 # taken from https://build.opensuse.org/package/view_file/network/FreeFileSync/FreeFileSync.spec (does not work)

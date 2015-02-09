@@ -4,7 +4,7 @@ Name=GitExtensions
 GenericName=Standalone Git Repository Tool
 Comment=Use git without the need of command line.
 
-# todo?
+# todo: add some parameters?
 Exec=gitext
 
 Terminal=false

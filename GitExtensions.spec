@@ -47,7 +47,8 @@ Requires:      mono-core mono-extras mono-winforms
 GitExtensions is a shell extension, a Visual Studio 2008/2010/2012 plugin and a standalone Git repository tool.
 It is a toolkit to make working with Git under Windows more intuitive.
 The shell extension will integrate in Windows Explorer and presents a nice context menu on files.
-A Mono build is provided to run it also under Linux. The commandline executable is called gitext.
+It is implemented in .NET; on Linux it runs on mono. The commandline executable is called gitext.
+The noarch part currently installs to /opt which should be fixed according to RPMLINT.
 
 
 %prep
@@ -103,3 +104,5 @@ install -p %{SOURCE3} %{buildroot}/%{_datadir}/pixmaps/
 %changelog
 * Mon Feb 9 2015 Gregor Mi <codestruct@posteo.org> - 2.48.03
 - package created based on https://build.opensuse.org/package/view_file/home:Warhammer40k:stuff/GitExtensions/GitExtensions.spec
+  and https://build.opensuse.org/package/view_file/network/FreeFileSync/FreeFileSync.spec
+  There are some RPMLINT issues.

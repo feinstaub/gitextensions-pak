@@ -22,23 +22,25 @@
 # The 'Name' must match the openSUSE build service package name
 # in order to get a properly filled download page
 # (see for example https://build.opensuse.org/package/show/home:codeminister/TODO)
-Name:           GitExtensions
+Name:          GitExtensions
 
-Summary:        Standalone Git Repository Tool
-Version:        2.48.03
-Release:        1
-License:        GPL-3.0+
-
-# TODO
-Group:          Productivity
-
-Url:            http://sourceforge.net/projects/gitextensions/
-Source0:        %{name}-%{version}-Source.zip
-Source1:        %{name}.desktop
-Source2:        %{name}.png
-
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  unzip
+Summary:       Standalone Git Repository Tool
+Version:       2.48.03
+Release:       1
+License:       GPL-3.0+
+Group:         Development/Tools/Version Control
+Url:           http://sourceforge.net/projects/gitextensions/
+Source0:       %{name}-%{version}-Mono.zip
+Source1:       gitext
+Source2:       %{name}.desktop
+Source3:       %{name}.png
+BuildRoot:     %{_tmppath}/%{name}-%{version}-build
+BuildArch:     noarch
+BuildRequires: mono-core mono-devel unzip
+BuildRequires: update-desktop-files
+# disable auto dep scanning:
+AutoReqProv:   no
+Requires:      mono-core mono-extras mono-winforms
 
 %description
 GitExtensions is a shell extension, a Visual Studio 2008/2010/2012 plugin and a standalone Git repository tool.
@@ -48,18 +50,55 @@ A Mono build is provided to run it also under Linux.
 
 
 %prep
+# see http://www.rpm.org/max-rpm/s1-rpm-inside-macros.html
+# %%setup: unpack the original sources
+# -q unknown option: leave it away
+# -n <name> - Set Name of Build Directory
+%setup -n %{name}
 
 
 %build
+# Nothing to build
 
 
 %install
+# install to /opt/GitExtensions
+install -d %{buildroot}/opt/%{name}
+cp -v -R * %{buildroot}/opt/%{name}
+rm %{buildroot}/opt/%{name}/gitext.sh
+
+# taken from https://build.opensuse.org/package/view_file/home:Warhammer40k:stuff/GitExtensions/GitExtensions.spec
+# todo: what do all the parameters say?
+# copy gitext executable, note the trailing slash
+install -d %{buildroot}/%{_bindir}/
+install -p -D -m 0755 %{SOURCE1} %{buildroot}/%{_bindir}/
+
+# taken from https://build.opensuse.org/package/view_file/network/FreeFileSync/FreeFileSync.spec (does not work)
+# copy .desktop
+install -d %{buildroot}/%{_datadir}/applications/
+install -p %{SOURCE2} %{buildroot}/%{_datadir}/applications/
+
+# copy .png file
+install -d %{buildroot}/%{_datadir}/pixmaps/
+install -p %{SOURCE3} %{buildroot}/%{_datadir}/pixmaps/
+
+# todo: what does the -i mean?
+# Obsoleted?? http://lists.opensuse.org/opensuse-packaging/2011-12/msg00177.html
+%suse_update_desktop_file -i %name
 
 
 %clean
+%__rm -rf "%{buildroot}"
 
 
 %files
-
+%defattr(-,root,root,-)
+%{_bindir}/gitext
+%dir /opt/%{name}
+/opt/%{name}/*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Mon Feb 9 2015 Gregor Mi <codestruct@posteo.org> - 2.48.03
+- package created based on https://build.opensuse.org/package/view_file/home:Warhammer40k:stuff/GitExtensions/GitExtensions.spec

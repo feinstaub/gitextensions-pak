@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# the original gitext.sh from source package looks like this:
+## #!/bin/bash
+## mono GitExtensions.exe "$@" &
+
+# 1) We must tell mono where GitExtensions.exe is located
+# 2) We do not want to start gitext in background, so we omit the &. If the user wants it he can put it.
+
+mono /opt/GitExtensions/GitExtensions.exe "$@"

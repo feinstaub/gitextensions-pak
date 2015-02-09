@@ -31,7 +31,9 @@ todo
 
 openSUSE build service
 ----------------------
-https://build.opensuse.org/package/show/home:codeminister/gitextensions
+https://build.opensuse.org/package/show/home:codeminister/GitExtensions
+
+copied some spec file stuff from: https://build.opensuse.org/package/show/home:Warhammer40k:stuff/GitExtensions
 
 
 
@@ -56,8 +58,39 @@ osc usage:
 osc build openSUSE_13.2 x86_64
 # intermediate results see: /var/tmp/build-root/openSUSE_13.2-x86_64/home/abuild/rpmbuild/
 
+```
+[   22s] RPMLINT report:
+[   22s] ===============
+[   28s] GitExtensions.noarch: W: suse-filelist-forbidden-opt /opt/GitExtensions is not allowed for official SUSE packages
+[   28s] /opt may not be used by a SUSE.                       It is reserved for 3rd
+[   28s] party packagers
+[   28s]
+[   28s] GitExtensions.src: W: strange-permission GitExtensions.desktop 0744L
+[   28s] GitExtensions.src: W: strange-permission GitExtensions-2.48.03-Mono.zip 0400L
+[   28s] A file that you listed to include in your package has strange permissions.
+[   28s] Usually, a file should have 0644 permissions.
+[   28s]
+[   28s] GitExtensions.noarch: W: non-executable-script /usr/share/applications/GitExtensions.desktop 0644L /usr/bin/env
+[   28s] This text file contains a shebang or is located in a path dedicated for
+[   28s] executables, but lacks the executable bits and cannot thus be executed.  If
+[   28s] the file is meant to be an executable script, add the executable bits,
+[   28s] otherwise remove the shebang or move the file elsewhere.
+[   28s]
+[   28s] GitExtensions.noarch: W: no-manual-page-for-binary gitext
+[   28s] Each executable in standard binary directories should have a man page.
+[   28s]
+[   28s] GitExtensions.noarch: W: incorrect-fsf-address /opt/GitExtensions/Diff-Scripts/TortoiseSVN License.txt
+[   28s] The Free Software Foundation address in this file seems to be outdated or
+[   28s] misspelled.  Ask upstream to update the address, or if this is a license file,
+[   28s] possibly the entire file with a new copy available from the FSF.
+[   28s]
+[   28s] 2 packages and 0 specfiles checked; 0 errors, 6 warnings.
+```
+todo: fix these issues
+
+
 # one-time checkout of empty project (does not exist anymore)
-osc co home:codeminister/freefilesync-6.13 -o .
+osc co home:codeminister/GitExtensions -o .
 
 # add all files
 osc add *

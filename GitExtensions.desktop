@@ -1,0 +1,15 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=GitExtensions
+GenericName=Standalone Git Repository Tool
+Comment=Use git without the need of command line.
+
+# todo?
+Exec=gitext
+
+Terminal=false
+Icon=GitExtensions
+Type=Application
+
+# todo
+# Categories=Utility;Archiving;System;

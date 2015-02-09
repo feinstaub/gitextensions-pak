@@ -36,6 +36,7 @@ Source2:       %{name}.desktop
 Source3:       %{name}.png
 BuildRoot:     %{_tmppath}/%{name}-%{version}-build
 BuildArch:     noarch
+# note that mono is not (yet) required for build because we use the prebuilt zip file
 BuildRequires: mono-core mono-devel unzip
 BuildRequires: update-desktop-files
 # disable auto dep scanning:
@@ -46,7 +47,7 @@ Requires:      mono-core mono-extras mono-winforms
 GitExtensions is a shell extension, a Visual Studio 2008/2010/2012 plugin and a standalone Git repository tool.
 It is a toolkit to make working with Git under Windows more intuitive.
 The shell extension will integrate in Windows Explorer and presents a nice context menu on files.
-A Mono build is provided to run it also under Linux.
+A Mono build is provided to run it also under Linux. The commandline executable is called gitext.
 
 
 %prep

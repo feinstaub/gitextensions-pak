@@ -26,7 +26,7 @@ Name:          GitExtensions
 
 Summary:       Standalone Git Repository Tool
 Version:       2.48.03
-Release:       1
+Release:       2
 License:       GPL-3.0+
 Group:         Development/Tools/Version Control
 Url:           http://sourceforge.net/projects/gitextensions/
